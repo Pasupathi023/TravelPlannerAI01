@@ -1,0 +1,50 @@
+service: travel-planner-backend
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.11
+  region: us-east-1
+  stage: ${opt:stage, 'dev'}
+  timeout: 30
+  memorySize: 512
+  environment:
+    GEMINI_API_KEY: ${env:GEMINI_API_KEY}
+    ALLOWED_ORIGINS: ${env:ALLOWED_ORIGINS, '*'}
+  httpApi:
+    cors:
+      allowedOrigins:
+        - ${env:ALLOWED_ORIGINS, '*'}
+      allowedHeaders:
+        - Content-Type
+        - Authorization
+      allowedMethods:
+        - GET
+        - POST
+        - OPTIONS
+
+functions:
+  app:
+    handler: wsgi_handler.handler
+    events:
+      - httpApi:
+          path: /
+          method: ANY
+      - httpApi:
+          path: /{proxy+}
+          method: ANY
+
+plugins:
+  - serverless-wsgi
+  - serverless-python-requirements
+
+custom:
+  wsgi:
+    app: app.app
+  pythonRequirements:
+    dockerizePip: non-linux
+    zip: true
+    slim: true
+    strip: false
+

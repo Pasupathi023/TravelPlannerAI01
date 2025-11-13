@@ -35,6 +35,12 @@ Thumbs.db
 .aws-sam/
 amplify/
 
+# Serverless
+.serverless/
+.serverless_plugins/
+backend/.serverless/
+backend/node_modules/
+
 # Python
 *.egg-info/
 .pytest_cache/

@@ -1,0 +1,17 @@
+{
+  "name": "travel-planner-backend",
+  "version": "1.0.0",
+  "description": "Travel Planner Backend Serverless",
+  "scripts": {
+    "deploy": "serverless deploy",
+    "deploy:prod": "serverless deploy --stage prod",
+    "remove": "serverless remove",
+    "logs": "serverless logs -f app -t"
+  },
+  "devDependencies": {
+    "serverless": "^3.38.0",
+    "serverless-wsgi": "^0.8.2",
+    "serverless-python-requirements": "^6.0.0"
+  }
+}
+
