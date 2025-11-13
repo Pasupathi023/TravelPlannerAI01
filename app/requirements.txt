@@ -1,6 +1,0 @@
-streamlit
-python-dotenv
-google-generativeai
-agno
-google-genai
-

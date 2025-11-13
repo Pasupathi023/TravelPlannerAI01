@@ -3,15 +3,16 @@ frontend:
   phases:
     preBuild:
       commands:
-        - echo "Starting build for Travel Planner AI"
-        - pip install -r app/requirements.txt
+        - cd frontend
+        - npm install
     build:
       commands:
-        - streamlit run app/travelagent.py --server.port=8501 --server.headless=true &
-        - sleep 20
+        - npm run build
   artifacts:
-    baseDirectory: /
+    baseDirectory: frontend/build
     files:
       - '**/*'
   cache:
-    paths: []
+    paths:
+      - frontend/node_modules/**/*
+
